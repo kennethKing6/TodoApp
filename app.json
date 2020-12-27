@@ -1,0 +1,12 @@
+{
+  "name": "reduxTrial1",
+  "displayName": "reduxTrial1",
+  "expo": {
+    "name": "reduxTrial1",
+    "slug": "reduxTrial1",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
