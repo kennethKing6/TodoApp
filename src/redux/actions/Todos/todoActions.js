@@ -1,35 +1,37 @@
 import * as Todos from './constants';
+import {store} from '../../index'
 
+export const addTask = (task)=>{
 
-export const addTask = (task)=> dispatch =>{
-dispatch({
-    type: Todos.ADD_TASK,
-    task: task,
-})
+    store.dispatch({
+        type: Todos.ADD_TASK,
+        task:task
+    })
+  
 }
 
-export const deleteTask = (task)=>dispatch =>{
-    dispatch({
+export const deleteTask = (task)=>{
+    store.dispatch({
         type: Todos.DELETE_TASK,
         task: task
     })
 }
 
-export const deleteTasks = (tasks)=>dispatch =>{
-    dispatch({
+export const deleteTasks = (tasks)=>{
+    store.dispatch({
         type: Todos.DELETE_TASKS,
         tasks: tasks
     })
 }
 
-export const selectTask = (task)=>dispatch =>{
-    dispatch({
-        type: Todos.TASK_COMPLETED,
-        task: task
+export const selectTask = (index)=>{
+    store.dispatch({
+        type: Todos.IS_SELECTED,
+        index: index
     })
 }
-export const deselectTask = (task)=>dispatch =>{
-    dispatch({
+export const deselectTask = (task)=>{
+    store.dispatch({
         type: Todos.TASK_NOT_DONE,
         task: task
     })

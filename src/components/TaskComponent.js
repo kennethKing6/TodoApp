@@ -1,28 +1,29 @@
 import React from 'react';
-import { View, Text,TouchableOpacity } from 'react-native';
+import {StyleSheet } from 'react-native';
 import { CheckBox } from 'react-native-elements';
 
-
 export function TaskComponent(props) {
+    const isSelected = props.valueObject.selected;
+
+  
+        
+    
     return (
-        <TouchableOpacity style={styles.container}>
+         
             <CheckBox
+             key={props.valueKey} 
             title={props.title}
             checkedIcon='dot-circle-o'
             uncheckedIcon='circle-o'
-            checked={props.checked}
-            containerStyle={[styles.checkbox,props.checkboxStyle]}
+            checked={isSelected}
+            containerStyle={[styles.container,props.checkboxStyle]}
+            onPress={props.onPress}
             />
-        </TouchableOpacity>
     )
 }
 
 const styles = StyleSheet.create({
     container:{
-        flex:1
-    },
-    checkbox:{
-    flex:1,
-    width:"100%"
+        flex:1,
     }
 })
