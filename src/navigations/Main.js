@@ -9,7 +9,7 @@ export  function Main() {
 
     return (
     <Stack.Navigator>
-      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen options={{headerShown: false}} name="Home" component={HomeScreen} />
     </Stack.Navigator>
     )
 }
