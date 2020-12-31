@@ -28,5 +28,4 @@ target 'reduxTrial1' do
   pod 'RNCMaskedView', :path => '../node_modules/@react-native-masked-view/masked-view'
 
   pod 'RNCAsyncStorage', :path => '../node_modules/@react-native-async-storage/async-storage'
-
 end

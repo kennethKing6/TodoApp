@@ -6,32 +6,21 @@ import * as Todos from "../actions/Todos/types";
 export  function todosReducer (state = [], action){
 
     const newState = [...state];
-    var taskIndex;
     switch(action.type){
         case Todos.ADD_TASK:
             const date = new Date();
              action.task["selected"] = false;
              action.task["date"] = date;
              action.task["time"] = {hours:date.getHours(),minutes:date.getMinutes()};
-
+             action.task['notificationId'] = null;
              newState.unshift(action.task);
             break;
         case Todos.DELETE_TASK:
-             taskIndex = newState.findIndex((ele)=>{
-               return ele.title === action.task.title && ele.description === action.task.description
-            });
-            if(taskIndex !== -1) newState.splice(taskIndex,1)
+             newState.splice(action.index,1);
 
             break;
         case Todos.DELETE_TASKS:
-            if(Array.isArray(action.tasks)){
-              action.tasks.forEach(element => {
-                 taskIndex = newState.findIndex((ele)=>{
-                   return ele.title === element.title && ele.description === element.description
-                });
-                newState.splice(taskIndex,1)
-              });
-            }
+            newState.splice(0);
             break;
         case Todos.IS_SELECTED:
              const position = action.index;
@@ -43,6 +32,12 @@ export  function todosReducer (state = [], action){
         case Todos.SELECT_TIME:
               newState[action.index].time = action.timeObject;
               break;
+        case Todos.SCHEDULE_TASK:
+          newState[action.index].notificationId = action.notificationId;
+          break;
+        case Todos.DELETE_SCHEDULED_TASK:
+          newState[action.index].notificationId = null;
+          break;
         default:
             return state;
     }

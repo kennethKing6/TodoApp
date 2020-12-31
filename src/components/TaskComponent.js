@@ -3,10 +3,12 @@ import React,{useState} from 'react';
 import {StyleSheet,Dimensions, View,Text,TouchableHighlight,Platform } from 'react-native';
 import { CheckBox  } from 'react-native-elements';
 import {connect} from 'react-redux';
+import TaskDetailsSettings from './TaskDetailsSettings';
 import {setTaskDate,setTaskTime} from '../redux/actions/Todos/todoActions';
 import Icon from 'react-native-vector-icons/Entypo';
 import {DatePickerModal,TimePickerModal} from 'react-native-paper-dates';
 import moment from 'moment';
+
 // Need manually add Intl polyfill for react-native app
 import "intl";
 
@@ -19,17 +21,18 @@ import "intl/locale-data/jsonp/en";
 
 const {width,height} = Dimensions.get("screen");
 
-//  moment.defineLocale(moment.locale());
+
+
  function TaskComponent(props) {
 
      const [datePickerVisibility,setDatePickerVisibility] = useState(false);
      const [timePickerVisibility,setTimePickerVisibility] = useState(false); 
-
+     const [taskDetailVisibility,setTaskDetailsVisibility] = useState(false);
 
      const isSelected = props.valueObject.selected;
      const time = `${moment(props.valueObject.date).format("MMM DD YYYY")},${props.valueObject.time.hours}:${props.valueObject.time.minutes}`;
 
-      function DatePicker(){
+     function DatePicker(){
 
         const onDismiss = React.useCallback(() => {
             setDatePickerVisibility(false)
@@ -69,7 +72,6 @@ const {width,height} = Dimensions.get("screen");
           [timePickerVisibility]
         );
       
-      
         return (
             <TimePickerModal
               visible={timePickerVisibility}
@@ -84,11 +86,12 @@ const {width,height} = Dimensions.get("screen");
 
             />)
       }
+
     return (
          <View style={styles.container} key={props.valueKey}>
            <Icon name='dots-three-vertical' size={20} color="#F25F29" 
                 style={{position:"relative",left: "90%",top:10,margin:10,marginBottom:20,opacity:2}}
-                onPress={()=>{console.log("voila")}}
+                onPress={()=>setTaskDetailsVisibility(true)}
             />
             <Text  style={styles.titleText}>{props.valueObject.title}</Text>
 
@@ -116,7 +119,10 @@ const {width,height} = Dimensions.get("screen");
              <DatePicker/>
 
              <TimePicker/>
-
+              <TaskDetailsSettings visibility={taskDetailVisibility} 
+              task={props.valueObject} notificationId={props.valueObject.notificationId} 
+              indexValue={props.valueKey} setVisibility={setTaskDetailsVisibility}
+              />
              <View style={{flex:1,flexDirection:"row",position:"absolute",
                           padding:10,}}>
 
