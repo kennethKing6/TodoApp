@@ -1,5 +1,5 @@
 import { act } from "react-test-renderer";
-import * as Todos from "../actions/Todos/constants";
+import * as Todos from "../actions/Todos/types";
 
 
 
@@ -9,7 +9,11 @@ export  function todosReducer (state = [], action){
     var taskIndex;
     switch(action.type){
         case Todos.ADD_TASK:
+            const date = new Date();
              action.task["selected"] = false;
+             action.task["date"] = date;
+             action.task["time"] = {hours:date.getHours(),minutes:date.getMinutes()};
+
              newState.unshift(action.task);
             break;
         case Todos.DELETE_TASK:
@@ -33,6 +37,12 @@ export  function todosReducer (state = [], action){
              const position = action.index;
            newState[position].selected = !newState[position].selected;
             break;
+        case Todos.SELECT_DATE:
+            newState[action.index].date = action.date;
+            break;
+        case Todos.SELECT_TIME:
+              newState[action.index].time = action.timeObject;
+              break;
         default:
             return state;
     }

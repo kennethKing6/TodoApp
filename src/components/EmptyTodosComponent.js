@@ -1,11 +1,12 @@
 import React from 'react'
 import { View, Text,Image,StyleSheet } from 'react-native'
+import { colors } from 'react-native-elements'
 
 export function EmptyTodosComponent(props) {
     return (
         <View style={[styles.container]}>
             <Image source={require("../assets/icons/no_task.png")} style={styles.image}/>
-            <Text style={styles.text}>Oops, no todo yet</Text>
+            <Text style={styles.text}>Oops, no task added yet</Text>
         </View>
     )
 }
@@ -14,7 +15,7 @@ const styles = StyleSheet.create({
     container:{
         flex:1,
         margin:30,
-        padding:100,
+        padding:50,
 
     },
     image:{
@@ -25,9 +26,9 @@ const styles = StyleSheet.create({
     text:{
         flex:1,
        textAlign:"center",
-        fontSize:18,
+        fontSize:20,
         fontWeight:'bold',
-        color:"#080E33",
+        color:"white",
         margin:5,
         marginTop:25
     }

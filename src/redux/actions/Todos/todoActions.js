@@ -1,4 +1,4 @@
-import * as Todos from './constants';
+import * as Todos from './types';
 import {store} from '../../index'
 
 export const addTask = (task)=>{
@@ -34,5 +34,21 @@ export const deselectTask = (task)=>{
     store.dispatch({
         type: Todos.TASK_NOT_DONE,
         task: task
+    })
+}
+
+export const setTaskDate = (date,index)=>{
+    store.dispatch({
+       type:Todos.SELECT_DATE, 
+       date:date,
+       index:index
+    })
+}
+
+export const setTaskTime= (time,index)=>{
+    store.dispatch({
+        type:Todos.SELECT_TIME,
+        timeObject:time,
+        index:index
     })
 }

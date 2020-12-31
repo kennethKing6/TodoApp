@@ -1,8 +1,9 @@
 import React,{useState} from 'react'
 import { View, Text,FlatList,StyleSheet } from 'react-native'
-import {TaskComponent} from './TaskComponent';
+import TaskComponent from './TaskComponent';
 import {EmptyTodosComponent} from './EmptyTodosComponent';
 import {selectTask} from '../redux/actions/Todos/todoActions';
+
 
 export function TodosList(props) {
     const [rerender,setRerender] = useState(false);
@@ -26,6 +27,7 @@ export function TodosList(props) {
            ListEmptyComponent={<EmptyTodosComponent/>}
            style={styles.flatlist}
            
+           
        />
 
     )
@@ -33,8 +35,6 @@ export function TodosList(props) {
 const styles = StyleSheet.create({
     flatlist:{
         flex:1,
-    },
-    emptyComponent:{
-    alignSelf:"center"
     }
+    
 })
